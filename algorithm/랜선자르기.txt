@@ -1,0 +1,33 @@
+from os import startfile
+import sys
+#sys.stdin = open("input.txt","rt") #채점시 꼭 주석처리 할것
+
+k,n = map(int,(input().split()))
+Line = []
+
+#입력받음
+for i in range(k):
+    tmp = int(input())
+    Line.append(tmp)
+
+#자르기함수
+def cutting(len):
+    count = 0
+    for i in Line:
+        count += i//len
+    return count
+
+result = 0
+left = 1
+right = max(Line)
+mid = right
+
+while left<=right:
+    mid = (left+right)//2    
+    if cutting(mid) >=n:
+        result = mid
+        left = mid+1
+    else :
+        right = mid-1
+
+print(result)
